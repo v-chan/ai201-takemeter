@@ -225,6 +225,10 @@ non_argument          38    9     8
 
 **Pre-labelling disclosure:** I asked Claude to pre-label the remaining comments based on the definitions I wrote for the labels. I then reviewed each of the labels and changed them if they did not meet the definitions. 
 
+Stretch Goal:
+1. **50 extra examples for the thinnest label**
+
+
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
