@@ -269,6 +269,8 @@ non_argument          73   16    16
 
 ```
 
+2. Change one hyperparamter
+I will attempt to change **EPOCHS** to a higher value and document the results.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
