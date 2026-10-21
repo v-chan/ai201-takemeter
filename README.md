@@ -54,34 +54,50 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `supported_claim`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** A comment that makes a claim and supports it with a specific real example, a source, or a stated reason that’s not a speculation.
 
 **Example 1:**
->
+> Stephen Wolfram had a great description of this effect in the early days (GPT 3.5 era): Machine learning trains the network to do... anything that you reward it for. If you keep training, it keeps getting better. Next word prediction can always keep getting better. At first, simply "learning" spelling is what makes the predictions better because tokens are word chunks, not always whole words. Then, the models "run out of steam" and can't get any better by learning more spelling rules, but the gradient descent forces them to get better... so they do... by learning the rules of grammar. At this point the AIs can output correctly spelled and grammatically coherent sentences, but the sentences ramble on about nonsense topics. So what happens next as the models run out of grammar rules is that they're forced to learn the rules "above grammar": logic, world knowledge, coherent story telling, etc. At some point they learn to output pages and pages of fluid, coherent text, but... if they're not smart, if they don't think, and if they don't know what they're talking about, then they're still "suboptimal" and their forced gradient descent will make them close those gaps. Eventually, the only way they can improve at "next token prediction" is by building up to human-like intelligence, including an inner monologue, theory of mind, and everything. We can even read their "thoughts": https://transformer-circuits.pub/2026/workspace/index.html
+
 
 **Example 2:**
->
+> In addition to the other comment mentioning CAR-T therapies, we also have therapies based on tumor-infiltrating lymphocytes (TILs) https://www.cancer.gov/news-events/cancer-currents-blog/2024... https://jitc.bmj.com/content/8/2/e000848 (careful: Figure 1 can be very graphical, but it shows the huge positive impact of this therapy) We also have therapies based on monoclonal recombinant antibodies conjugated with chemotherapeutics. Simply put, we can produce antibodies that are specific for markers present in the surface of cancer cells, and we can attach drugs that can kill those cells. The antibody part is what makes this type of therapy very effective (you target only cancer cells, and not healthy cells) and also very expensive. 
+
+
+### `unsupported_claim`
+
+**Definition:** A comment that makes a claim but is based on speculation or does not provide a source or example.
+
+**Example 1:**
+> The singularity, as defined by Hinton (and others) as RSI (Recursive Self Improvement) may actually be beginning already, as OpenAI has announced an AI acting as a "research intern" (!).
+
+
+**Example 2:**
+> It's really good at pattern recognition. So I'm not sure how it knows to be 'surprised' that alone is pretty fascinating.
+
+
+### `non_argument`
+
+**Definition:** A comment that doesn't make a claim. It can be a reaction, a clarifying question, or lists a source with no commentary.
+
+**Example 1:**
+> tl;dr but i <3 it. upvoted this shit.
+
+**Example 2:**
+> Did Claude find this on it's own, or did somebody using Claude find it? 
+
+
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** supported claim and unsupported claim
 
 **The decision rule I used every time:**
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
-
+If the post provides reasoning or sources that are unreleated to the claim, then it is an unsupported claim.
 
 
 ---
@@ -91,7 +107,7 @@
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** I chose comments from Y Combinator’s Hacker News in response to an article discussing Claude discovering a novel enzyme system.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->

@@ -5,6 +5,6 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+supported_claim: A comment that makes a claim and supports it with a specific real example, a source, or a stated reason that’s not a speculation.
+unsupported_claim: A comment that makes a claim but is based on speculation or does not provide a source or example.
+non_argument: A comment that doesn't make a claim. It can be a reaction, a clarifying question, or lists a source with no commentary.
