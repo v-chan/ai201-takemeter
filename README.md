@@ -228,6 +228,46 @@ non_argument          38    9     8
 Stretch Goal:
 1. **50 extra examples for the thinnest label**
 
+Adding more examples for non_agument increased the f1 for it from 0 to 0.811 and improved the overall accuracy. 
+**before**:
+```
+accuracy  0.467
+macro F1  0.272
+
+  supported_claim  F1 0.167   (n=9)
+  unsupported_claim F1 0.650   (n=13)
+  non_argument     F1 0.000   (n=8)
+```
+**after**:
+```
+accuracy  0.684
+macro F1  0.606
+
+  supported_claim  F1 0.364   (n=9)
+  unsupported_claim F1 0.643   (n=13)
+  non_argument     F1 0.811   (n=16)
+
+```
+
+**New counts per label:**
+
+| Label             | Count | Share |
+|-------------------|-------|-------|
+| supported_claim   | 59    | 23.6% |
+| unsupported_claim | 86    | 34.4% |
+| non_argument      | 105   | 52.5% |
+| **Total**         | 250   | 100%  |
+** New Split sizes:** 
+```
+train 174  ·  val 38  ·  test 38
+
+                   train  val  test
+label                              
+supported_claim       41    9     9
+unsupported_claim     60   13    13
+non_argument          73   16    16
+
+```
 
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
