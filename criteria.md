@@ -51,62 +51,60 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall accuracy
 
 <!-- Your criterion. It must name a number. -->
+The overall accuracy is at least .7 on the held-out set for all three seeds.
 
 
-
-**Why this target:**
-
-
-
----
-
-## 2.
-
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
+**Why this target:** I chose this target because the `supported_claim` and `unsupported_claim` comments can appear similar and `non_argument` is underpresented compared to the rest.
 
 
 ---
 
-## 3.
+## 2. Per-label performance 
 
 <!-- Your criterion. -->
+The F1 for `non_argument` is at least .6 on the held-out set for all three seeds.
 
+**Why this target:**
+I chose this because `non_argument` is underpresented compared to `supported_claim` and `unsupported_claim` so the accuracy may be less. The comments are also more distinct compared to the claim ones so I chose a target that was better than guessing.
+
+---
+
+## 3. Balance
+
+<!-- Your criterion. -->
+No label should be more than 65% of the dataset.
 
 
 **Why this target:**
-
+I saw that a lot of the comments for the Hacker News article were either `supported_claim` or `unsupported_claim` due to the technical nature of the discussion. I chose this limit so avoid one label dominating the dataset which would result in the model trying to classify every comment as the dominant label.
 
 
 ---
 
-## 4.
+## 4. Consistency	
 
 <!-- Your criterion. -->
 
-
+If another person relabled the posts using the provided label definitions, they would agree on at least 85% of the labels.
 
 **Why this target:**
-
+I chose this target since there are some boderline `supported_claim`  `unsupported_claim` comments that could be labeled differently. However, the majority of the posts should be labeled distinctly based on the definitions.
 
 
 ---
 
-## 5.
+## 5. Confidence
 
 <!-- Your criterion. -->
 
+If the confidence is at least 0.80, it should predict correctly 75% of the time on all three seeds.
 
 
 **Why this target:**
-
+I chose this target since I expect high-confidence predictions to be correct a majority of the time compared to low-confidence predictions and it is higher than the accuracy threshold I set for the takemeter to be useable.
 
 
 ---
