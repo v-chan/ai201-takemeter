@@ -270,7 +270,33 @@ non_argument          73   16    16
 ```
 
 2. Change one hyperparamter
-I will attempt to change **EPOCHS** to a higher value and document the results.
+I increased `EPOCHS` from 3 to 8. I noticed that the accuracy and macro f1 improved more than after I added the additional 50 comments for `non_argument`. The most drastic change was the f1 for supported_claim rising from `.364` to `.706`.
+
+before:
+```
+accuracy  0.684
+macro F1  0.606
+
+  supported_claim  F1 0.364   (n=9)
+  unsupported_claim F1 0.643   (n=13)
+  non_argument     F1 0.811   (n=16)
+
+```
+
+after:
+```
+accuracy  0.763
+macro F1  0.743
+
+  supported_claim  F1 0.706   (n=9)
+  unsupported_claim F1 0.667   (n=13)
+  non_argument     F1 0.857   (n=16)
+
+confidence   most-sure third 1.000   ·   least-sure third 0.500
+
+Wrote results.json and test_split.csv. Commit them both — they're the
+evidence the run happened, and next unit reads test_split.csv.
+```
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 

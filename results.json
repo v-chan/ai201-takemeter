@@ -1,38 +1,38 @@
 {
   "seed": 42,
   "n_test": 38,
-  "accuracy": 0.6842105263157895,
-  "f1_macro": 0.6057681057681058,
+  "accuracy": 0.7631578947368421,
+  "f1_macro": 0.7432306255835668,
   "per_label": {
     "supported_claim": {
-      "precision": 1.0,
-      "recall": 0.2222222222222222,
-      "f1": 0.36363636363636365,
+      "precision": 0.75,
+      "recall": 0.6666666666666666,
+      "f1": 0.7058823529411765,
       "support": 9
     },
     "unsupported_claim": {
-      "precision": 0.6,
-      "recall": 0.6923076923076923,
-      "f1": 0.6428571428571429,
+      "precision": 0.7272727272727273,
+      "recall": 0.6153846153846154,
+      "f1": 0.6666666666666666,
       "support": 13
     },
     "non_argument": {
-      "precision": 0.7142857142857143,
+      "precision": 0.7894736842105263,
       "recall": 0.9375,
-      "f1": 0.8108108108108109,
+      "f1": 0.8571428571428571,
       "support": 16
     }
   },
   "confusion": {
     "supported_claim": {
-      "supported_claim": 2,
-      "unsupported_claim": 5,
-      "non_argument": 2
+      "supported_claim": 6,
+      "unsupported_claim": 2,
+      "non_argument": 1
     },
     "unsupported_claim": {
-      "supported_claim": 0,
-      "unsupported_claim": 9,
-      "non_argument": 4
+      "supported_claim": 2,
+      "unsupported_claim": 8,
+      "non_argument": 3
     },
     "non_argument": {
       "supported_claim": 0,
@@ -41,10 +41,10 @@
     }
   },
   "confidence": {
-    "mean_when_right": 0.43766388297080994,
-    "mean_when_wrong": 0.4020557105541229,
-    "accuracy_most_confident_third": 0.9166666666666666,
-    "accuracy_least_confident_third": 0.5833333333333334,
+    "mean_when_right": 0.6797275543212891,
+    "mean_when_wrong": 0.5569366216659546,
+    "accuracy_most_confident_third": 1.0,
+    "accuracy_least_confident_third": 0.5,
     "n_per_third": 12
   },
   "device": "mps",
