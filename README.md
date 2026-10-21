@@ -41,8 +41,7 @@
 
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
-
-
+This app classifies comments from Y Combinator’s Hacker News into 3 different labels: `unsupported_claim`, `supported_claim`, and `non_argument`.  The first two labels are based on comments that make claims and whether or not it provides evidence to back up their claim whereas the non_argument label are for comments such as questions or reactions. The training dataset was obtained from the comments on this article https://news.ycombinator.com/item?id=49820134.
 
 ---
 
@@ -107,19 +106,20 @@ If the post provides reasoning or sources that are unreleated to the claim, then
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:** I chose comments from Y Combinator’s Hacker News in response to an article discussing Claude discovering a novel enzyme system.
+**Where the posts came from:** I chose comments from Y Combinator’s Hacker News in response to an article discussing Claude discovering a novel enzyme system. https://news.ycombinator.com/item?id=49820134.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
+I chose 20 posts and labeled them cold first. I then pre-labeled with AI based on my definitions and corrected them as needed.
 
 **Counts per label:**
 
-| Label | Count | Share |
-|---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| Label             | Count | Share |
+|-------------------|-------|-------|
+| supported_claim   | 59    | 29.5% |
+| unsupported_claim | 86    | 43.0% |
+| non_argument      | 55    | 27.5% |
+| **Total**         | 200   | 100%  |
 
 **Three hard cases**
 
@@ -127,42 +127,77 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+> *The post:* 
+> It isn't a convenient gotcha. It's about what the people pushing the given thing are intending. 
+> 
+> Person demoing something they made is usually trying to hide the fact they had claude built it and sell it like they didn't. This sort of person often lacks the technical skills to vet that what claude actually produced is actually working as they expect. Hence the snark.
+> 
+> On the other hand, with anthropic's case, they are trying to say "claude did this, how smart it is" while trying to downplay the fact that they needed it to be steered by domain experts to produce anything worthwhile.
+> 
+> *Could have been:* `unsupported_claim`
+> 
+> I chose `supported_claim`, because since they provide specific examples and reasoning to support their claims.
 
 **2.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+> *The post:* 
+> No, it’s not odd; IMO. It’s by design.
+> I see all of this leading to a setup for: We did cure Cancer, everyone else (Healthcare, Gov., Rx) etc... has just not caught up or even worse; “you just don’t have access top that model/version”.
+> I have seen several times on HN recently how people don’t see the impact of AI/more code etc... and I believe this is because its following the K-shape of the current economy.
+> At the top where most of us aren’t but CAN see via stock market news etc...; they are making more money by adding efficiencies etc...
+> At the bottom; efficiencies are being applied at a scale that they could not before such that social and Gov. programs are more manageable and optimized at scale.
+
+> 
+> *Could have been:* `supported_claim`
+> 
+> I chose `unsupported_claim`, because they provide reasoning based on speculation even though they provide reasoning to support their claim.
 
 **3.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
-
+> *The post:* 
+>  “At best an AI might use all those resources to build out further compute and expand its own capabilities. But at that point nobody should be worrying about competing in the labour market, they should be worried about AI making our planet unliveable for carbon based life.”
+> It’s the same thing. There will be a period where the AI will be creating consumer products for humans because humans still have some purchasing power, or some resources to trade, then this transitions to the stage where the AI is making the planet unlivable.
+> The AI and robots which do not seek resources (for whatever purpose) will be outcompeted in the resource market by AI and robots which DO seek resources. Yes. Compute, land, energy will all be things which AI’s seek. They might also have stranger preferences which emerge like the equivalent of luxury sports cars are for humans. Maybe they’ll be competing to make the largest tungsten cube possible to dunk on their competitors, who knows? That stuff is harder to predict.
+> 
+> *Could have been:* `suppported_claim`
+> 
+> I chose `unsupported_claim`  because it relies on speculation about the future to support it’s claim.
 ---
 
 ## The Training Run
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** distilbert-base-uncased
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
+```
+EPOCHS = 3
+LEARNING_RATE = 2e-5
+BATCH_SIZE = 16
+SEED = 42
+```
+
+
 
 **Anything I changed from the defaults, and why:**
+```
+MAX_LENGTH = 512
+```
+
+I chose to increase the max length because the posts can be quite lengthy and found the inital results had an f1 of 0 for `supported_claim` and `non_argument`. I found that after increasing beyond 128, the f1 of `supported_claim` was non-zero, but the f1 of non_argument remained 0.
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
 of next unit's variance. -->
+```
+train 139  ·  val 31  ·  test 30
 
+                   train  val  test
+label                              
+supported_claim       41    9     9
+unsupported_claim     60   13    13
+non_argument          38    9     8
+
+```
 
 
 ---
@@ -178,17 +213,18 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked Claude to fetch comments and put it into a CSV file using the Hacker News API.
+- *What came back:* A python script that allowed me to fetch the comments and put it into a CSV file.
+- *What I changed:* The script was fine as is so I didn’t not change it itself. I only pasted selected comments from the resulting csv to create my `labels.csv` dataset.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked for Claude to check the definitions for my labels for unsupported claim and supported claim.
+- *What came back:* It suggested I define something more specific for reasoning.
+- *What I changed:* I modifed my defintions to account for speculation.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** I asked Claude to pre-label the remaining comments based on the definitions I wrote for the labels. I then reviewed each of the labels and changed them if they did not meet the definitions. 
+
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
